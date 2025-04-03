@@ -81,7 +81,6 @@ const cubisti = [
     },
     // Aggiungi altri cubisti qui
 ];   // ... (i tuoi dati dei cubisti)
-];
 
 let soldi = 10;
 let vite = 5;
