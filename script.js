@@ -1,24 +1,17 @@
 const cubisti = [
-    {
-        nome: "Nome Cubista 1",
-        wcaid: 2010,
-        media3x3: 8.50,
-        singolo3x3: 6.20,
-        // Aggiungi altri dati
-    },
-    {
-        nome: "Nome Cubista 2",
-        wcaid: 2015,
-        media3x3: 7.80,
-        singolo3x3: 5.90,
-        // Aggiungi altri dati
-    },
-    // Aggiungi altri cubisti
+    // ... (i tuoi dati dei cubisti)
 ];
 
 let soldi = 10;
+let vite = 5;
 let indizi = [];
 let cubistaScelto = cubisti[Math.floor(Math.random() * cubisti.length)];
+let indiziUsati = 0;
+
+function aggiornaInterfaccia() {
+    document.getElementById("soldi").textContent = soldi;
+    document.getElementById("vite").textContent = vite;
+}
 
 function chiediIndizio(tipoIndizio) {
     let costo = 1;
@@ -30,6 +23,8 @@ function chiediIndizio(tipoIndizio) {
         soldi -= costo;
         indizi.push(`${tipoIndizio}: ${cubistaScelto[tipoIndizio]}`);
         aggiornaIndizi();
+        aggiornaInterfaccia();
+        indiziUsati++;
     } else {
         alert("Non hai abbastanza soldi!");
     }
@@ -48,8 +43,30 @@ function aggiornaIndizi() {
 function indovina() {
     const nomeInserito = prompt("Chi è il cubista?");
     if (nomeInserito && nomeInserito.toLowerCase() === cubistaScelto.nome.toLowerCase()) {
-        document.getElementById("risultato").textContent = "Hai indovinato!";
+        const punti = calcolaPunti();
+        document.getElementById("risultato").textContent = `Hai indovinato! Punti: ${punti}`;
+        soldi = 10;
+        vite++;
+        indizi = [];
+        indiziUsati = 0;
+        cubistaScelto = cubisti[Math.floor(Math.random() * cubisti.length)];
+        aggiornaIndizi();
+        aggiornaInterfaccia();
     } else {
-        document.getElementById("risultato").textContent = `Sbagliato! Era ${cubistaScelto.nome}.`;
+        vite--;
+        if (vite > 0) {
+            document.getElementById("risultato").textContent = "Sbagliato! Prova di nuovo.";
+            aggiornaInterfaccia();
+        } else {
+            document.getElementById("risultato").textContent = `Hai perso! Era ${cubistaScelto.nome}.`;
+        }
     }
 }
+
+function calcolaPunti() {
+    let punti = 100;
+    punti -= indiziUsati * 10;
+    return Math.max(punti, 10);
+}
+
+aggiornaInterfaccia();
