@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Indovina il Cubista</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Indovina il Cubista</h1>
+    <p>Hai 10 soldi per giocare.</p>
+    <div id="indizi">
+        <p>Indizi:</p>
+        <ul id="lista-indizi"></ul>
+    </div>
+    <div id="opzioni">
+        <button onclick="chiediIndizio('wcaid')">Anno WCAID (3 soldi)</button>
+        <button onclick="chiediIndizio('media3x3')">Media 3x3 (1 soldo)</button>
+        <button onclick="chiediIndizio('singolo3x3')">Singolo 3x3 (1 soldo)</button>
+        <button onclick="indovina()">Indovina!</button>
+    </div>
+    <div id="risultato"></div>
+    <script src="script.js"></script>
+</body>
+</html>
