@@ -1,5 +1,4 @@
 const cubisti = [
- const cubisti = [
     {
         nome: "Chiara Marcucci",
         wcaid: 2021,
